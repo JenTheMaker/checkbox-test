@@ -1,23 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Paper from '@material-ui/core/Paper';
 
-function App() {
+
+import './App.css';
+import useCheckbox from './useCheckbox';
+import CheckboxComponent from './CheckboxComponent';
+
+const App = () => {
+  const { checkboxList, onClick } = useCheckbox();
+  
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <>
+          <Paper>
+            {checkboxList?.map((checkboxItem: any, idx: number) => (
+              <CheckboxComponent
+                key={checkboxItem.id}
+                checkboxItem={checkboxItem}
+                onClick={onClick}
+              />
+            ))}
+        </Paper>
+        </>
       </header>
     </div>
   );
